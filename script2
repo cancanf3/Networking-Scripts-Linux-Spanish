@@ -1,0 +1,22 @@
+#
+# Este script activa/descativa modulos del kernel dependiendo si esta desactivo/ac
+# tivado
+# autor: Jose Pena
+# ult. Fecha de edicion: 12/02/2013
+#
+
+mod={$1:? "no ingreso un modulo"}
+
+lsmod | grep "$mod"
+
+var=$1
+
+if [ var = 0 ] ; Then
+	modprobe -v -r $mod
+else
+	modprobe -v $mod
+fi
+
+if [ $? != 0 ] ; then
+	echo " $mod no es un modulo valido"
+fi
