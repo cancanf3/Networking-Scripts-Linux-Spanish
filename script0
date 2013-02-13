@@ -1,0 +1,27 @@
+#
+# Este script hace ping a todas las maquinas
+# de una sala
+# Autor: Jose Pena
+# Ult. Fecha de edicion: 12/02/2013
+#
+
+sala=$1
+for sala in [ 1..25 ]
+	do
+		ping -c 1 $sala
+		var=$?
+		if [ var=0 ] ; Then
+			echo " $sala se conecto con exito " >> /holada69
+		else
+			echo " $sala no se pudo conectar" >> /holada69
+		fi	
+	done
+
+cat /holada69
+
+
+
+
+
+
+
