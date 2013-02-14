@@ -1,17 +1,19 @@
 #! /bin/bash
 # Este programa corre un comando en todas las maquinas de una sala
 # Autor: Jose Pena
-# Ult. Fecha de edicion: 12/02/2013
+# Ult. Fecha de edicion: 13/02/2013
 #
 
-echo " los comandos se comenzaran a correr en la sala $1 y si no se pudo concretar una conexion con una computadora se guardaran en el log /errores"
-sala={$1:?no ha ingresado ninguna sala}
-
+echo " si no se pudo concretar una conexion con una computadora se guardaran en el log /errores"
+read -p " En que sala desea trabajar: "
+sala=${REPLY:? 'no ha ingresado ninguna sala'}
+read -p "que comando desea correr (escribirlo con flags y control de flujo):"
+comando=${REPLY:? 'no ingreso un comando'}
 for sala in [ 1..25 ]
 do
 	ping -c 1 $sala
 	if [ $? = 0 ] ; Then
-		screen -d -m -S $sala ssh root@$sala apt-get install	
+		screen -d -m -S $sala ssh root@$sala $comando	
 	else 
 		echo " no se pudo conectar a $sala  " >> /errores69
 	fi

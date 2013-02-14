@@ -1,0 +1,16 @@
+#! /bin/bash
+# Este programa borra el contenido no indispensable del home
+# Autor: Jose Pena
+# Ult. Fecha de edicion: 13/02/2013
+#
+
+read -p " en que sala desea trabajar"
+sala=${REPLY:? 'no se ingreso una sala'}
+read -p " Nombre del usuario "
+user=${REPLY:? ' no se ingreso el usuario'}
+
+for sala in [ 1..25 ] 
+do
+	screen -d -m -S $sala ssh root@$sala rm -rf /home/$user !( /Documents | /Downloads)
+done
+

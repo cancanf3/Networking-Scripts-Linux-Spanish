@@ -1,12 +1,12 @@
-#
-# Este script activa/descativa modulos del kernel dependiendo si esta desactivo/ac
-# tivado
+#! /bin/bash
+# Este script activa/descativa modulos del kernel dependiendo si esta 
+# desactivo/activado
 # autor: Jose Pena
 # ult. Fecha de edicion: 12/02/2013
 #
 
-mod={$1:? "no ingreso un modulo"}
-
+read -p "ingrese el modulo:"
+mod=${REPLY:? 'no se ha insertado un modulo'}
 lsmod | grep "$mod"
 
 var=$1
